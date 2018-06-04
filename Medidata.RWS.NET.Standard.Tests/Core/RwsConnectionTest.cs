@@ -4,17 +4,14 @@ using System.Threading.Tasks;
 using Flurl.Http.Testing;
 using Medidata.RWS.NET.Standard.Core;
 using Medidata.RWS.NET.Standard.Core.Requests;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
-namespace Medidata.RWS.NET.Standard.Tests.Http
+namespace Medidata.RWS.NET.Standard.Tests.Core
 {
     [TestClass]
     public class RwsConnectionTest
     {
         private HttpTest _httpTest;
-
 
         [TestInitialize]
         public void SetUp()
@@ -29,14 +26,26 @@ namespace Medidata.RWS.NET.Standard.Tests.Http
         }
 
         [TestMethod]
-        public async Task it_can_get_details_about_the_last_result()
+        public async Task RwsConnection_can_get_details_about_the_last_result()
         {
-            var RwsConnection = new RwsConnection("innovate", "test", "password");
+            var rwsConnection = new RwsConnection("innovate", "test", "password");
 
-            var rwsResponse = await RwsConnection.SendRequestAsync(new FakeRwsRequest(HttpMethod.Get));
+            await rwsConnection.SendRequestAsync(new FakeRwsRequest());
 
-            Assert.IsNotNull(RwsConnection.LastResult);
-            Assert.AreEqual(HttpStatusCode.OK, RwsConnection.LastResult.StatusCode);
+            Assert.IsNotNull(rwsConnection.LastResult);
+            Assert.AreEqual(HttpStatusCode.OK, rwsConnection.LastResult.StatusCode);
+
+        }
+
+
+        [TestMethod]
+        public async Task RwsConnection_can_get_details_about_the_request_time()
+        {
+            var rwsConnection = new RwsConnection("innovate", "test", "password");
+
+            await rwsConnection.SendRequestAsync(new FakeRwsRequest());
+
+            Assert.IsNotNull(rwsConnection.RequestTime);
 
         }
 

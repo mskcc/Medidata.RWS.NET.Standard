@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Medidata.RWS.NET.Standard\Medidata.RWS.NET.Standard.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Http\" />
-  </ItemGroup>
-
 </Project>

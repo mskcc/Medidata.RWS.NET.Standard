@@ -7,13 +7,11 @@ namespace Medidata.RWS.NET.Standard.Core.Responses
 {
     class RwsResponse : IRwsResponse
     {
-        private readonly HttpResponseMessage _response;
-
         public RwsResponse(HttpResponseMessage response)
         {
-            _response = response;
+            Response = response;
         }
 
-        public HttpResponseMessage Response => _response;
+        public HttpResponseMessage Response { get; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Medidata.RWS.NET.Standard.Core
         private readonly string _subDomain;
         private readonly string _virtualDir;
         protected readonly string BaseUrl;
+        private TimeSpan _requestTime;
 
         public string SubDomain => _subDomain;
         public string VirtualDirectory => _virtualDir;
@@ -24,8 +26,8 @@ namespace Medidata.RWS.NET.Standard.Core
 
         public RwsConnection(string subDomain, string virtualDir = "RaveWebServices")
         {
-            this._subDomain = subDomain;
-            this._virtualDir = virtualDir;
+            _subDomain = subDomain;
+            _virtualDir = virtualDir;
 
             BaseUrl = Url.Combine(
                 subDomain.ToLower().StartsWith("http") ? subDomain : $"https://{subDomain}.mdsol.com",
@@ -66,15 +68,19 @@ namespace Medidata.RWS.NET.Standard.Core
 
             client.WithHeaders(request.Headers);
 
-            var response = await BaseUrl
-                .SendAsync(request.Method, request.RequestBody);
+            var stopwatch = Stopwatch.StartNew();
+            var response = await BaseUrl.SendAsync(request.Method, request.RequestBody);
+            stopwatch.Stop();
 
             LastResult = response;
+            RequestTime = stopwatch.Elapsed;
 
             return new RwsResponse(response);
 
         }
 
-        public HttpResponseMessage LastResult { get; set; }
+        public HttpResponseMessage LastResult { get; private set; }
+
+        public TimeSpan RequestTime { get; private set; }
     }
 }
