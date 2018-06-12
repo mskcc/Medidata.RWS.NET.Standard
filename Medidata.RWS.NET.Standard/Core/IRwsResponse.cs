@@ -4,7 +4,7 @@ namespace Medidata.RWS.NET.Standard.Core
 {
     public interface IRwsResponse
     {
-        HttpResponseMessage Response { get; }
+        HttpResponseMessage ResponseObject { get; }
 
     }
 }
