@@ -21,10 +21,10 @@ namespace Medidata.RWS.NET.Standard.Helpers
 
             private static readonly char[] ByteOrderMark = { '\uFEFF', '\u200B' };
 
-        /// <summary>
-        /// removes any unusual Unicode characters that can't be encoded into XML
-        /// </summary>
-        public static string Sanitize(string text)
+            /// <summary>
+            /// removes any unusual Unicode characters that can't be encoded into XML
+            /// </summary>
+            public static string Sanitize(string text)
             {
                 return string.IsNullOrEmpty(text) ? "" : InvalidXmlChars.Replace(text, "");
             }
@@ -37,7 +37,7 @@ namespace Medidata.RWS.NET.Standard.Helpers
             /// <returns>XmlElement</returns>
             public static XDocument GetXDocumentFromString(string xmlString)
             {
-                xmlString = Sanitize(xmlString);
+                //xmlString = Sanitize(xmlString);
 
                 XDocument xmlDoc = new XDocument();
 
