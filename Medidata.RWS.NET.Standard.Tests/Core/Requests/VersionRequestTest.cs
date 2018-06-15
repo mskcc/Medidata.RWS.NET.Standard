@@ -27,6 +27,7 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
         {
             var connection = new RwsConnection("mskcc");
             var version = await connection.SendRequestAsync(new VersionRequest());
+            Assert.IsInstanceOfType(version, typeof(RwsTextResponse));
           
 
         }
