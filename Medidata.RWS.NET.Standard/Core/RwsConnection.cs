@@ -54,7 +54,7 @@ namespace Medidata.RWS.NET.Standard.Core
 
         public async System.Threading.Tasks.Task<IRwsResponse> SendRequestAsync(IRwsRequest request, int? timeout = null)
         {
-            var client = new FlurlRequest(BaseUrl);
+            var client = new FlurlRequest(Url.Combine(BaseUrl, request.UrlPath()));
 
             if (timeout != null)
             {
@@ -69,13 +69,14 @@ namespace Medidata.RWS.NET.Standard.Core
             client.WithHeaders(request.Headers);
 
             var stopwatch = Stopwatch.StartNew();
-            var response = await BaseUrl.SendAsync(request.Method, request.RequestBody);
+
+            var response = await client.SendAsync(request.Method, request.RequestBody);
             stopwatch.Stop();
 
             LastResult = response;
             RequestTime = stopwatch.Elapsed;
 
-            return new RwsResponse(response);
+            return request.Result(response);
 
         }
 

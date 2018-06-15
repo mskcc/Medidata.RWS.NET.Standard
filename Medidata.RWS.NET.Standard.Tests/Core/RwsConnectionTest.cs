@@ -49,6 +49,20 @@ namespace Medidata.RWS.NET.Standard.Tests.Core
 
         }
 
+        [TestMethod]
+        public async Task RwsConnection_can_build_the_proper_URL_from_a_request()
+        {
+            var rwsConnection = new RwsConnection("innovate", "test", "password");
+
+            await rwsConnection.SendRequestAsync(new FakeRwsRequest());
+
+            Assert.AreEqual(
+                "https://innovate.mdsol.com/RaveWebServices/fakepath", 
+                rwsConnection.LastResult.RequestMessage.RequestUri.AbsoluteUri
+            );
+
+        }
+
 
 
     }

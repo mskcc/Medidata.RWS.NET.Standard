@@ -46,7 +46,7 @@ namespace Medidata.RWS.NET.Standard.Helpers
                     return xmlDoc;
                 }
 
-                using (XmlReader reader = XmlReader.Create(new StringReader(xmlString), new XmlReaderSettings { CheckCharacters = false }))
+                using (XmlReader reader = XmlReader.Create(new StringReader(xmlString), new XmlReaderSettings { CheckCharacters = false, DtdProcessing = DtdProcessing.Parse }))
                 {
                     while (reader.Read())
                     {
