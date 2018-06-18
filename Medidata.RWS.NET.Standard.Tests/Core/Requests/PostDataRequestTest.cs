@@ -13,7 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
 {
     [TestClass]
-    public class PostMetaDataRequestTest
+    public class PostDataRequestTest
     {
 
         private HttpTest _httpTest;
@@ -31,19 +31,18 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
         }
 
         [TestMethod]
-        public void PostMetaDataRequestTest_can_properly_construct_a_url()
+        public void PostDataRequestTest_can_properly_construct_a_url()
         {
-            var request = new PostMetadataRequest("Mediflex(Dev)", "test data");
+            var request = new PostDataRequest("test data");
 
-            Assert.AreEqual("metadata/studies/Mediflex(Dev)/drafts", request.UrlPath());
-
+            Assert.AreEqual("webservice.aspx?PostODMClinicalData", request.UrlPath());
 
         }
 
         [TestMethod]
-        public void PostMetaDataRequestTest_can_set_content_type()
+        public void PostDataRequestTest_can_set_content_type()
         {
-            var request = new PostMetadataRequest("Mediflex(Dev)", "test data");
+            var request = new PostDataRequest("test data");
 
             Assert.IsTrue(request.Headers.TryGetValue("Content-type", out var contentType));
 
@@ -54,18 +53,18 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
 
 
         [TestMethod]
-        public async Task PostMetaDataRequestTest_result_can_be_parsed()
+        public async Task PostDataRequestTest_result_can_be_parsed()
         {
             _httpTest.RespondWith(
             @"<Response ReferenceNumber=""82e942b0-48e8-4cf4-b299-51e2b6a89a1b""
               InboundODMFileOID=""""
               IsTransactionSuccessful=""1""
               SuccessStatistics=""Rave objects touched: Subjects=1; Folders=2; Forms=3; Fields=4; LogLines=5"" NewRecords=""6""
-              DraftImported=""7"">
+              SubjectNumberInStudy=""7"" SubjectNumberInStudySite=""8"">
             </Response>");
  
             var rwsConnection = new RwsConnection("innovate", "test", "password");
-            var request = new PostMetadataRequest("Mediflex(Dev)", "test data");
+            var request = new PostDataRequest("test data");
             var result = await rwsConnection.SendRequestAsync(request) as RwsPostResponse;
                                             
             Assert.IsInstanceOfType(result, typeof(RwsPostResponse));
@@ -75,8 +74,8 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
             Assert.AreEqual(result.FieldsTouched, 4);
             Assert.AreEqual(result.LogLinesTouched, 5);
             Assert.AreEqual(result.NewRecords, "6");
-            Assert.AreEqual(result.DraftImported, "7");
-
+            Assert.AreEqual(result.SubjectNumberInStudy, "7");
+            Assert.AreEqual(result.SubjectNumberInStudySite, "8");
 
         }
 
