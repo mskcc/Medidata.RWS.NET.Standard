@@ -7,7 +7,7 @@ using Medidata.RWS.NET.Standard.Core.Responses;
 
 namespace Medidata.RWS.NET.Standard.Core.Requests
 {
-    class PostMetadataRequest : RwsAuthorizedPostRequest
+    public class PostMetadataRequest : RwsAuthorizedPostRequest
     {
         public string ProjectName { get; }
         public object Data { get; }
@@ -21,6 +21,7 @@ namespace Medidata.RWS.NET.Standard.Core.Requests
         {
             ProjectName = projectName;
             Data = data;
+            Headers.Add("Content-type", "text/xml");
         }
 
         public override string UrlPath()
