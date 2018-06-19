@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace Medidata.RWS.NET.Standard.ODM
 {
@@ -49,8 +50,9 @@ namespace Medidata.RWS.NET.Standard.ODM
         private string _sourceSystemVersion;
         
         private string _id;
+
         #endregion
-        
+
         [System.Xml.Serialization.XmlElementAttribute("Study")]
         public List<Study> Study
         {

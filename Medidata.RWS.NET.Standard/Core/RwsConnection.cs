@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Medidata.RWS.NET.Standard.Core.Responses;
+using Medidata.RWS.NET.Standard.Exceptions;
 
 namespace Medidata.RWS.NET.Standard.Core
 {
@@ -70,11 +71,13 @@ namespace Medidata.RWS.NET.Standard.Core
 
             var stopwatch = Stopwatch.StartNew();
 
-            var response = await client.SendAsync(request.Method, request.RequestBody);
+            var response = await client.AllowAnyHttpStatus().SendAsync(request.Method, request.RequestBody);
             stopwatch.Stop();
 
             LastResult = response;
             RequestTime = stopwatch.Elapsed;
+
+            RwsExceptionHandler.Parse(response);
 
             return request.Result(response);
 
