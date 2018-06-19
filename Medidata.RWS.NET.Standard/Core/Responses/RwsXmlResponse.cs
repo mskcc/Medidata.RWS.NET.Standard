@@ -49,7 +49,7 @@ namespace Medidata.RWS.NET.Standard.Core.Responses
             get
             {
                 try {
-                    return RwsHelpers.Xml.GetXDocumentFromString(ResponseObject.Content.ReadAsStringAsync().Result);
+                    return RwsHelpers.Xml.GetXDocumentFromString(ResponseObject.Content?.ReadAsStringAsync().Result);
                 } catch (XmlException)
                 {
                     return null;
