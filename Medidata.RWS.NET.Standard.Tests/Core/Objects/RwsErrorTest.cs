@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Flurl.Http;
 using Flurl.Http.Testing;
 using Medidata.RWS.NET.Standard.Core;
 using Medidata.RWS.NET.Standard.Core.Objects;
 using Medidata.RWS.NET.Standard.Core.Requests;
 using Medidata.RWS.NET.Standard.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Medidata.RWS.NET.Standard.Tests.Core.Objects
 {
@@ -41,16 +43,21 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Objects
                          FileOID=""4d13722a-ceb6-4419-a917-b6ad5d0bc30e""
                          ODMVersion=""1.3""
                          mdsol:ErrorDescription=""Incorrect login and password combination. [RWS00008]""
-                         xmlns=""http://www.cdisc.org/ns/odm/v1.3"" />", 401);
-           
+                         xmlns=""http://www.cdisc.org/ns/odm/v1.3"" />", 401)
+                     .Settings.AfterCall = call => {
+
+                         call.Response.Content.Headers.ContentType.MediaType = "text/xml";
+                       
+                    };
+
             var rwsConnection = new RwsConnection("innovate", "test", "password");
 
             try
             {
-                var response = await rwsConnection.SendRequestAsync(new FakeRwsRequest());
+                var response = await rwsConnection.SendRequestAsync(new PostDataRequest("test"));
             } catch( RwsException ex)
             {
-                Assert.AreEqual("", ex.ErrorResponse.GetErrorDescription());
+                Assert.AreEqual("Incorrect login and password combination. [RWS00008]", ex.Message);
             }
 
 

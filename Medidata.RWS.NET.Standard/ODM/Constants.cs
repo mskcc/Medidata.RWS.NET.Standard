@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Xml.Linq;
+
 namespace Medidata.RWS.NET.Standard.ODM
 {
     /// <summary>
@@ -6,6 +8,12 @@ namespace Medidata.RWS.NET.Standard.ODM
     /// </summary>
     public static class Constants
     {
+
+        public static XNamespace MDSOL = XNamespace.Get(Constants.MDSOL_NS);
+
+
+        public static XNamespace ODM = XNamespace.Get(Constants.ODM_NS);
+
         /// <summary>
         /// The odm namespace.
         /// </summary>

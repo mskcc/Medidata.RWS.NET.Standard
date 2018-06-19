@@ -10,9 +10,11 @@ namespace Medidata.RWS.NET.Standard.Exceptions
 {
     public static class RwsExceptionHandler
     {
+
         public static void Parse(HttpResponseMessage response)
         {
             string content = response.Content.ReadAsStringAsync().Result;
+            var responseContentTypeHeader = response.Content.Headers.FirstOrDefault(x => x.Key == "Content-Type");
 
             switch (response.StatusCode)
             {
@@ -41,7 +43,8 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                     }
 
                     IRwsError _error;
-                    if (response.RequestMessage.Headers.Any(x => x.Key.Equals("Content-Type") && x.Value.ToString().StartsWith("text/xml", StringComparison.CurrentCulture)))
+
+                    if (responseContentTypeHeader.Value.Any(x => x.StartsWith("text/xml", StringComparison.CurrentCulture)))
                     {
                         if (content.StartsWith("<Response", StringComparison.CurrentCulture))
                         {

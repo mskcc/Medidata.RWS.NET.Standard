@@ -21,7 +21,9 @@ namespace Medidata.RWS.NET.Standard.Core.Objects
 
         public RwsError(HttpResponseMessage responseMessage): base(responseMessage)
         {
-            SetErrorDescription(RootElement?.Attribute("ErrorDescription")?.Value); 
+
+            SetErrorDescription(RootElement.Attribute(Constants.MDSOL + "ErrorDescription")?.Value);
+           
         }
 
 
