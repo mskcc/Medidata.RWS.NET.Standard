@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Medidata.RWS.NET.Standard.Helpers;
@@ -41,9 +42,20 @@ namespace Medidata.RWS.NET.Standard.Core.Responses
         [XmlIgnoreAttribute]
         public HttpResponseMessage ResponseObject { get; protected set; }
 
-        public XElement RootElement => XmlDocument.Root;
+        public XElement RootElement => XmlDocument?.Root;
 
-        public XDocument XmlDocument => RwsHelpers.Xml.GetXDocumentFromString(ResponseObject.Content.ReadAsStringAsync().Result);
-   
+        public XDocument XmlDocument
+        {
+            get
+            {
+                try {
+                    return RwsHelpers.Xml.GetXDocumentFromString(ResponseObject.Content.ReadAsStringAsync().Result);
+                } catch (XmlException)
+                {
+                    return null;
+                }
+
+            }
+        }
     }
 }

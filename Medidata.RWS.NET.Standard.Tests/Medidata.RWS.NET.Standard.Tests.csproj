@@ -19,5 +19,9 @@
 
   <ItemGroup>
     <Folder Include="Core\Objects\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Core\Responses\RwsErrorResponseTest.cs" />
   </ItemGroup>
 </Project>

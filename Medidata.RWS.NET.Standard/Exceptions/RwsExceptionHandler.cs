@@ -37,6 +37,10 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                 case HttpStatusCode.InternalServerError:
                     throw new RwsException("Server Error (500)", response);
                 case HttpStatusCode.Unauthorized:
+                    if (content.Contains("Authorization Header not provided"))
+                    {
+                        throw new RwsAuthorizationException(content);
+                    }
                     if (content.Contains("<h2>HTTP Error 401.0 - Unauthorized</h2>"))
                     {
                         throw new RwsException("Unauthorized.", response);
@@ -64,7 +68,7 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                     {
                         _error = new RwsErrorResponse(response);
                     }
-                    throw new RwsException(_error.GetErrorDescription(), response);
+                    throw new RwsException(_error.GetErrorDescription(), _error);
 
             }
 
@@ -83,12 +87,12 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                     }
                     else
                     {
-                        throw new RwsException($"Unexpected Status Code ({response.StatusCode.ToString()})", response);
+                        throw new RwsException($"Unexpected Status Code ({(int)response.StatusCode})", response);
                     }
                 }
                 else
                 {
-                    throw new RwsException($"Unexpected Status Code ({response.StatusCode.ToString()})", response);
+                    throw new RwsException($"Unexpected Status Code ({(int)response.StatusCode})", response);
                 }
                 throw new RwsException(_error.GetErrorDescription(), _error);
             }
