@@ -25,11 +25,12 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
         [TestMethod]
         public async Task VersionRequest_can_decode_a_text_responseAsync()
         {
-            var connection = new RwsConnection("mskcc");
+            var _httpTest = new HttpTest();
+            var connection = new RwsConnection("innovate");
             var version = await connection.SendRequestAsync(new VersionRequest());
+            _httpTest.Dispose();
             Assert.IsInstanceOfType(version, typeof(RwsTextResponse));
-          
-
+         
         }
 
 

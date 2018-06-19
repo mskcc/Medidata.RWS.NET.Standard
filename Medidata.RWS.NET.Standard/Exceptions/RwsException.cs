@@ -7,6 +7,9 @@ namespace Medidata.RWS.NET.Standard.Exceptions
 {
     public class RwsException : Exception
     {
+
+        public RwsException(string message, Exception innerException) : base(message, innerException) { }
+
         public RwsException(string message, IRwsError response) : base(message)
         {
             ErrorResponse = response;
