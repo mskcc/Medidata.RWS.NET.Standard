@@ -20,5 +20,6 @@
   <ItemGroup>
     <Folder Include="Core\Objects\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Core\Requests\Datasets\" />
   </ItemGroup>
 </Project>
