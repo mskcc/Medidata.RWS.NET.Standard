@@ -22,5 +22,6 @@
     <Folder Include="Exceptions\" />
     <Folder Include="Core\Requests\Datasets\" />
     <Folder Include="Core\Requests\ODM Adapter\" />
+    <Folder Include="Core\Requests\Biostat Adapter\" />
   </ItemGroup>
 </Project>

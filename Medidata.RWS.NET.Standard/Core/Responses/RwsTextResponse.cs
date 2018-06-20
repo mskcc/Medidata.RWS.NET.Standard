@@ -11,7 +11,5 @@ namespace Medidata.RWS.NET.Standard.Core.Requests
             ResponseObject = response;
         }
 
-
-
     }
 }
