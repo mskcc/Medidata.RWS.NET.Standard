@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Flurl;
+using Medidata.RWS.NET.Standard.Helpers;
 
 namespace Medidata.RWS.NET.Standard.Core.Requests.BiostatAdapter
 {
@@ -53,24 +54,7 @@ namespace Medidata.RWS.NET.Standard.Core.Requests.BiostatAdapter
             return Url.Combine("studies", StudyNameAndEnvironment(), "datasets", DataSetName());
         }
 
-        /// <summary>
-        /// Gets the format extension.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <returns></returns>
-        /// <exception cref="System.NotSupportedException"></exception>
-        public string GetFormatExtension(string format)
-        {
-            try
-            {
-                return DatasetFormats[format.ToLower()];
-            }
-            catch (Exception)
-            {
-                throw new NotSupportedException(
-                    $"datasetFormat must be one of the following: {string.Join(",", DatasetFormats.Keys)}. `{format}` is not valid.");
-            }
-        }
+   
 
         /// <summary>
         /// The dataset name.
@@ -78,7 +62,7 @@ namespace Medidata.RWS.NET.Standard.Core.Requests.BiostatAdapter
         /// <returns></returns>
         protected string DataSetName()
         {
-            return $"{FormOid}{GetFormatExtension(DatasetFormat)}";
+            return $"{FormOid}{RwsHelpers.DataSets.DatasetFormatToExtension(DatasetFormat)}";
         }
 
 

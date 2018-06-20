@@ -96,8 +96,36 @@ namespace Medidata.RWS.NET.Standard.Helpers
 
         }
 
+        public static class DataSets
+        {
+            /// <summary>
+            /// The allowed dataset formats
+            /// </summary>
+            static readonly Dictionary<string, string> DatasetFormats = new Dictionary<string, string>
+            {
+                { "csv", ".csv"  },
+                { "xml", ""  },
+            };
+
+            public static string DatasetFormatToExtension(string format)
+            {
+                try
+                {
+                    return DatasetFormats[format.ToLower()];
+                }
+                catch (Exception)
+                {
+                    throw new NotSupportedException(
+                        $"datasetFormat must be one of the following: {string.Join(",", DatasetFormats.Keys)}. `{format}` is not valid.");
+                }
+
+            }
+
+        }
+
         public static class Strings
         {
+ 
 
             /// <summary>
             /// Return the environment name based on a study and protocol name.

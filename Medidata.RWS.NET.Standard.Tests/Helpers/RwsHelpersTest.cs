@@ -76,6 +76,13 @@ namespace Medidata.RWS.NET.Standard.Tests.Core
 
         }
 
+        [TestMethod]
+        public void RwsHelpers_can_generate_a_dataset_extension_based_on_format()
+        {
+            Assert.AreEqual(".csv", RwsHelpers.DataSets.DatasetFormatToExtension("csv"));
+            Assert.AreEqual("", RwsHelpers.DataSets.DatasetFormatToExtension("xml"));
+        }
+
 
 
     }

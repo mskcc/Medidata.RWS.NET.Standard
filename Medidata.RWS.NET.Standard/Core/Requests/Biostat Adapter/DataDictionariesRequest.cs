@@ -1,5 +1,6 @@
 ﻿using System;
 using Flurl;
+using Medidata.RWS.NET.Standard.Helpers;
 
 namespace Medidata.RWS.NET.Standard.Core.Requests.BiostatAdapter
 {
@@ -34,7 +35,7 @@ namespace Medidata.RWS.NET.Standard.Core.Requests.BiostatAdapter
         /// <returns></returns>
         protected override string DataSetName()
         {
-            return $"SDTMDataDictionaries{GetFormatExtension(DatasetFormat)}";
+            return $"SDTMDataDictionaries{RwsHelpers.DataSets.DatasetFormatToExtension(DatasetFormat)}";
         }
     }
 }
