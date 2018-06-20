@@ -23,5 +23,6 @@
     <Folder Include="Core\Requests\Datasets\" />
     <Folder Include="Core\Requests\ODM Adapter\" />
     <Folder Include="Core\Requests\Biostat Adapter\" />
+    <Folder Include="Builders\" />
   </ItemGroup>
 </Project>

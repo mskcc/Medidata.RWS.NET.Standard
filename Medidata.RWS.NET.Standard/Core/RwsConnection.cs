@@ -19,8 +19,7 @@ namespace Medidata.RWS.NET.Standard.Core
         private readonly string _subDomain;
         private readonly string _virtualDir;
         protected readonly string BaseUrl;
-        private TimeSpan _requestTime;
-
+    
         public string SubDomain => _subDomain;
         public string VirtualDirectory => _virtualDir;
 

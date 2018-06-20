@@ -10,6 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="2.3.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +20,7 @@
     <Folder Include="Core\Requests\Datasets\" />
     <Folder Include="Core\Requests\ODM Adapter\" />
     <Folder Include="Core\Requests\Biostat Adapter\" />
+    <Folder Include="Builders\" />
   </ItemGroup>
 
   <ItemGroup>
