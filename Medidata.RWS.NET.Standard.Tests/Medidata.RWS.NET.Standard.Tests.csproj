@@ -21,5 +21,6 @@
     <Folder Include="Core\Objects\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Core\Requests\Datasets\" />
+    <Folder Include="Core\Requests\ODM Adapter\" />
   </ItemGroup>
 </Project>
