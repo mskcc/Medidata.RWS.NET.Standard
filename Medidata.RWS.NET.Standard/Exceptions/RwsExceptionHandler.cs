@@ -22,7 +22,7 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                 case HttpStatusCode.NotFound:
                     if (content.StartsWith("<Response", StringComparison.CurrentCulture))
                     {
-                        var error = new RwsErrorResponse(response);
+                        var error = GenerateResponse(response);
                         throw new RwsException(error.GetErrorDescription(), error);
                     }
                     if (content.Contains("<html"))
@@ -52,7 +52,7 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                     {
                         if (content.StartsWith("<Response", StringComparison.CurrentCulture))
                         {
-                            _error = new RwsErrorResponse(response);
+                            _error = GenerateResponse(response);
                         }
                         else if (content.Contains("ODM"))
                         {
@@ -66,7 +66,7 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                     }
                     else
                     {
-                        _error = new RwsErrorResponse(response);
+                        _error = GenerateResponse(response);
                     }
                     throw new RwsException(_error.GetErrorDescription(), _error);
 
@@ -79,7 +79,7 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                 {
                     if (content.Trim().StartsWith("<Response", StringComparison.CurrentCulture))
                     {
-                        _error = new RwsErrorResponse(response);
+                        _error = GenerateResponse(response);
                     }
                     else if (content.Contains("ODM"))
                     {
@@ -96,6 +96,16 @@ namespace Medidata.RWS.NET.Standard.Exceptions
                 }
                 throw new RwsException(_error.GetErrorDescription(), _error);
             }
+        }
+
+        static IRwsError GenerateResponse(HttpResponseMessage message)
+        {
+            if (message.RequestMessage.Method == HttpMethod.Post)
+            {
+                return new RwsPostErrorResponse(message);
+            }
+
+            return new RwsErrorResponse(message);
         }
     }
 }

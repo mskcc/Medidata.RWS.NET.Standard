@@ -30,8 +30,8 @@ namespace Medidata.RWS.NET.Standard.Core.Responses
                 {
                     var nameValues = part.Trim().Split('=');
 
-                    var name = nameValues.ElementAt(0);
-                    var value = nameValues.ElementAt(1);
+                    var name = nameValues.ElementAt(0).Trim();
+                    var value = nameValues.ElementAt(1).Trim();
 
                     switch (name)
                     {

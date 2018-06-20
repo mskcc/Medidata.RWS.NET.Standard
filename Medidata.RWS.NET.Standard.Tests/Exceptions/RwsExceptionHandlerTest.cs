@@ -22,7 +22,8 @@ namespace Medidata.RWS.NET.Standard.Tests.Exceptions
             var responseMessage401 = new HttpResponseMessage
             {
                 Content = content,
-                StatusCode = System.Net.HttpStatusCode.Unauthorized
+                StatusCode = System.Net.HttpStatusCode.Unauthorized,
+                RequestMessage = new HttpRequestMessage { Method = HttpMethod.Get }
             };
 
             try
@@ -51,7 +52,8 @@ namespace Medidata.RWS.NET.Standard.Tests.Exceptions
                          ODMVersion=""1.3""
                          mdsol:ErrorDescription=""Incorrect login and password combination. [RWS00008]""
                          xmlns=""http://www.cdisc.org/ns/odm/v1.3"" />", Encoding.UTF8, "text/xml"),
-                StatusCode = System.Net.HttpStatusCode.Unauthorized
+                StatusCode = System.Net.HttpStatusCode.Unauthorized,
+                RequestMessage = new HttpRequestMessage { Method = HttpMethod.Get }
             };
 
             try
@@ -85,7 +87,8 @@ namespace Medidata.RWS.NET.Standard.Tests.Exceptions
             var responseMessage401 = new HttpResponseMessage
             {
                 Content = content,
-                StatusCode = System.Net.HttpStatusCode.Unauthorized
+                StatusCode = System.Net.HttpStatusCode.Unauthorized,
+                RequestMessage = new HttpRequestMessage { Method = HttpMethod.Get }
             };
 
             try
@@ -116,7 +119,8 @@ namespace Medidata.RWS.NET.Standard.Tests.Exceptions
             var responseMessage400 = new HttpResponseMessage
             {
                 Content = content,
-                StatusCode = System.Net.HttpStatusCode.BadRequest
+                StatusCode = System.Net.HttpStatusCode.BadRequest,
+                RequestMessage = new HttpRequestMessage { Method = HttpMethod.Get }
             };
 
             try
@@ -148,7 +152,8 @@ namespace Medidata.RWS.NET.Standard.Tests.Exceptions
             var responseMessage404 = new HttpResponseMessage
             {
                 Content = content,
-                StatusCode = System.Net.HttpStatusCode.NotFound
+                StatusCode = System.Net.HttpStatusCode.NotFound,
+                RequestMessage = new HttpRequestMessage { Method = HttpMethod.Get }
             };
 
             try
@@ -331,6 +336,44 @@ namespace Medidata.RWS.NET.Standard.Tests.Exceptions
             catch (RwsException ex)
             {
                 Assert.AreEqual("Unexpected Status Code (410)", ex.Message);
+            }
+
+        }
+
+
+
+
+        [TestMethod]
+        public void RwsExceptionHandler_attaches_a_RwsPostErrorResponse_for_POST_requests()
+        {
+
+            var content = new StringContent(@"<Response
+                                            ReferenceNumber=""0b47fe86-542f-4070-9e7d-16396a5ef08a""
+                                            InboundODMFileOID=""Not Supplied""
+                                            IsTransactionSuccessful=""0""
+                                            ReasonCode=""RWS00024""
+                                            ErrorOriginLocation=""/ODM/ClinicalData[1]/SubjectData[1]""
+                                            SuccessStatistics=""Rave objects touched: Subjects=0; Folders=0; Forms=0; Fields=0; LogLines=0""
+                                            ErrorClientResponseMessage=""Subject already exists."">
+                                            </Response>", Encoding.UTF8, "text/xml");
+
+            var responseMessage400 = new HttpResponseMessage
+            {
+                Content = content,
+                StatusCode = System.Net.HttpStatusCode.BadRequest,
+                RequestMessage = new  HttpRequestMessage 
+                {
+                    Method = HttpMethod.Post   
+                }
+            };
+
+            try
+            {
+                RwsExceptionHandler.Parse(responseMessage400);
+            }
+            catch (RwsException ex)
+            {
+                Assert.IsInstanceOfType(ex.ErrorResponse, typeof(RwsPostErrorResponse));
             }
 
         }
