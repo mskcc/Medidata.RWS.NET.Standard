@@ -21,10 +21,10 @@ namespace Medidata.RWS.NET.Standard.Helpers
 
             private static readonly char[] ByteOrderMark = { '\uFEFF', '\u200B' };
 
-        /// <summary>
-        /// removes any unusual Unicode characters that can't be encoded into XML
-        /// </summary>
-        public static string Sanitize(string text)
+            /// <summary>
+            /// removes any unusual Unicode characters that can't be encoded into XML
+            /// </summary>
+            public static string Sanitize(string text)
             {
                 return string.IsNullOrEmpty(text) ? "" : InvalidXmlChars.Replace(text, "");
             }
@@ -37,7 +37,7 @@ namespace Medidata.RWS.NET.Standard.Helpers
             /// <returns>XmlElement</returns>
             public static XDocument GetXDocumentFromString(string xmlString)
             {
-                xmlString = Sanitize(xmlString);
+                //xmlString = Sanitize(xmlString);
 
                 XDocument xmlDoc = new XDocument();
 
@@ -46,7 +46,7 @@ namespace Medidata.RWS.NET.Standard.Helpers
                     return xmlDoc;
                 }
 
-                using (XmlReader reader = XmlReader.Create(new StringReader(xmlString), new XmlReaderSettings { CheckCharacters = false }))
+                using (XmlReader reader = XmlReader.Create(new StringReader(xmlString), new XmlReaderSettings { CheckCharacters = false, DtdProcessing = DtdProcessing.Parse }))
                 {
                     while (reader.Read())
                     {
@@ -96,8 +96,36 @@ namespace Medidata.RWS.NET.Standard.Helpers
 
         }
 
+        public static class DataSets
+        {
+            /// <summary>
+            /// The allowed dataset formats
+            /// </summary>
+            static readonly Dictionary<string, string> DatasetFormats = new Dictionary<string, string>
+            {
+                { "csv", ".csv"  },
+                { "xml", ""  },
+            };
+
+            public static string DatasetFormatToExtension(string format)
+            {
+                try
+                {
+                    return DatasetFormats[format.ToLower()];
+                }
+                catch (Exception)
+                {
+                    throw new NotSupportedException(
+                        $"datasetFormat must be one of the following: {string.Join(",", DatasetFormats.Keys)}. `{format}` is not valid.");
+                }
+
+            }
+
+        }
+
         public static class Strings
         {
+ 
 
             /// <summary>
             /// Return the environment name based on a study and protocol name.

@@ -17,4 +17,12 @@
     <ProjectReference Include="..\Medidata.RWS.NET.Standard\Medidata.RWS.NET.Standard.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Objects\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Core\Requests\Datasets\" />
+    <Folder Include="Core\Requests\ODM Adapter\" />
+    <Folder Include="Core\Requests\Biostat Adapter\" />
+    <Folder Include="Builders\" />
+  </ItemGroup>
 </Project>

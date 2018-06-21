@@ -64,8 +64,7 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
 
             var rwsConnection = new RwsConnection("innovate", "test", "password");
             var request = new StudyVersionsRequest("Mediflex(Dev)");
-            var response = await rwsConnection.SendRequestAsync(request);
-            var result = request.Result(response.ResponseObject) as RwsStudyMetadataVersions;
+            var result = await rwsConnection.SendRequestAsync(request) as RwsStudyMetadataVersions;
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(RwsStudyMetadataVersions));
             Assert.AreEqual(result.Study.Oid, "Mediflex");

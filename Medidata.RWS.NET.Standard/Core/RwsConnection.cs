@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Medidata.RWS.NET.Standard.Core.Responses;
+using Medidata.RWS.NET.Standard.Exceptions;
 
 namespace Medidata.RWS.NET.Standard.Core
 {
@@ -18,8 +19,7 @@ namespace Medidata.RWS.NET.Standard.Core
         private readonly string _subDomain;
         private readonly string _virtualDir;
         protected readonly string BaseUrl;
-        private TimeSpan _requestTime;
-
+    
         public string SubDomain => _subDomain;
         public string VirtualDirectory => _virtualDir;
 
@@ -52,9 +52,9 @@ namespace Medidata.RWS.NET.Standard.Core
         }
 
 
-        public async System.Threading.Tasks.Task<IRwsResponse> SendRequestAsync(IRwsRequest request, int? timeout = null)
+        public async Task<IRwsResponse> SendRequestAsync(IRwsRequest request, int? timeout = null)
         {
-            var client = new FlurlRequest(BaseUrl);
+            var client = new FlurlRequest(Url.Combine(BaseUrl, request.UrlPath()));
 
             if (timeout != null)
             {
@@ -69,13 +69,23 @@ namespace Medidata.RWS.NET.Standard.Core
             client.WithHeaders(request.Headers);
 
             var stopwatch = Stopwatch.StartNew();
-            var response = await BaseUrl.SendAsync(request.Method, request.RequestBody);
+
+            HttpResponseMessage response = null;
+            try {
+                response = await client.AllowAnyHttpStatus().SendAsync(request.Method, request.RequestBody);
+            } catch (FlurlHttpTimeoutException ex)
+            {
+                throw new RwsException($"Connection timeout for {client.Url.ToString()}", ex);
+            }
+
             stopwatch.Stop();
 
             LastResult = response;
             RequestTime = stopwatch.Elapsed;
 
-            return new RwsResponse(response);
+            RwsExceptionHandler.Parse(response);
+
+            return request.Result(response);
 
         }
 

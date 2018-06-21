@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Flurl.Http.Testing;
 using Medidata.RWS.NET.Standard.Core;
 using Medidata.RWS.NET.Standard.Core.Requests;
+using Medidata.RWS.NET.Standard.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Medidata.RWS.NET.Standard.Tests.Core
@@ -46,6 +47,39 @@ namespace Medidata.RWS.NET.Standard.Tests.Core
             await rwsConnection.SendRequestAsync(new FakeRwsRequest());
 
             Assert.IsNotNull(rwsConnection.RequestTime);
+
+        }
+
+        [TestMethod]
+        public async Task RwsConnection_can_build_the_proper_URL_from_a_request()
+        {
+            var rwsConnection = new RwsConnection("innovate", "test", "password");
+
+            await rwsConnection.SendRequestAsync(new FakeRwsRequest());
+
+            Assert.AreEqual(
+                "https://innovate.mdsol.com/RaveWebServices/fakepath", 
+                rwsConnection.LastResult.RequestMessage.RequestUri.AbsoluteUri
+            );
+
+        }
+
+        [TestMethod]
+        public async Task RwsConnection_raises_an_exception_if_timeout_occurs()
+        {
+            var rwsConnection = new RwsConnection("innovate", "test", "password");
+
+            _httpTest.SimulateTimeout();
+
+            try {
+                await rwsConnection.SendRequestAsync(new FakeRwsRequest());
+            } catch (RwsException ex)
+            {
+                Assert.AreEqual(
+                    "Connection timeout for https://innovate.mdsol.com/RaveWebServices/fakepath",
+                    ex.Message
+                );
+            }
 
         }
 

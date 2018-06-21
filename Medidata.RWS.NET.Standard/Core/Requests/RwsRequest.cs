@@ -43,11 +43,11 @@ namespace Medidata.RWS.NET.Standard.Core.Requests
         /// <summary>
         /// Gets or sets the headers.
         /// </summary>
-        /// <value>
+        /// <value>s
         /// The headers.
         /// </value>
-        public IEnumerable Headers { get; }
-
+        public IDictionary<string, string> Headers { get; protected set; }
+        
         /// <summary>
         /// The URL path for the request.
         /// </summary>
