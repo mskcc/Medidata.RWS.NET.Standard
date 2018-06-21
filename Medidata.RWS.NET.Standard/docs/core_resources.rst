@@ -18,7 +18,7 @@ Returns a list of EDC studies (as a ``RWSStudies`` object). Excludes studies tha
 .. code-block:: c#
 
 	using Medidata.RWS.NET.Standard.Core.Requests;
-
+  
 	//Create a connection
 	var connection = new RwsConnection("innovate", "username", "password"); // authentication required
 

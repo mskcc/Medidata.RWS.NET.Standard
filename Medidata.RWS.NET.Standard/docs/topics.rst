@@ -1,4 +1,3 @@
-﻿
 ============================================
 Topics
 ============================================
@@ -12,6 +11,7 @@ For example:
 .. code-block:: c#
 
 	using Medidata.RWS.NET.Standard.Core.Requests;
+  
 	var connection = new RwsConnection("innovate", "rwsUser1", "password1");
 
 The above code will create a ``RwsConnection`` object and point it to the innovate RAVE instance (subdomain) - ``https://innovate.mdsol.com``. The username and password you provide are concatenated, base64-encoded, and passed in the Authorization HTTP header each time you make a request using the connection object, as follows:
@@ -19,6 +19,7 @@ The above code will create a ``RwsConnection`` object and point it to the innova
 ``Authorization: Basic cndzVXNlcjE6cGFzc3dvcmQx``
 
 **Do not share your username / password in publicly accessible areas such GitHub, client-side code, and so forth.** Authentication is only required when establishing a new ``RwsConnection`` object. The Medidata.RWS.NET.Standard library will then automatically send the appropriate Authorization header for each request made with this connection object.
+
 API requests without authentication will fail.
 
 Errors

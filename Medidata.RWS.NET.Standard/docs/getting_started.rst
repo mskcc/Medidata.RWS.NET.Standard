@@ -1,4 +1,3 @@
-﻿
 ============================================
 Getting Started
 ============================================
@@ -20,6 +19,7 @@ At the most basic level, communicating with Medidata RAVE using Medidata.RWS.NET
 .. code-block:: c#
 
 	using Medidata.RWS.NET.Standard.Core.Requests;
+
 	var connection = new RwsConnection("innovate", "RAVE username", "RAVE password");
 
 The above code will create a RwsConnection object to the "innovate" RAVE instance (subdomain) - https://innovate.mdsol.com. You'd substitute your RAVE instance subdomain here.
@@ -30,6 +30,7 @@ The RAVE username and RAVE password parameters should reference a dedicated RAVE
 .. code-block:: c#
 
 	using Medidata.RWS.NET.Standard.Core.Requests.Datasets;
+
 	var datasetRequest = new SubjectDatasetRequest("MediFlex", "PROD", subject_key: "SUBJECT001", formOid: "HEM");
 
 3. Sending the request.
