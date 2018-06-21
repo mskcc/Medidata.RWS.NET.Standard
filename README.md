@@ -2,7 +2,7 @@
 **Medidata.RWS.NET.Standard** is a comprehensive, fluent .NET Standard 2.0 API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.
 
 ## Documentation
-Documentation can be found at (TBA).
+Documentation can be found at https://medidatarwsnetstandard.readthedocs.io/en/latest/
 
 ## Installation
 Install the library via Nuget: (TBA) and then use in your own .NET project.
