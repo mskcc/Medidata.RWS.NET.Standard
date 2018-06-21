@@ -1,25 +1,25 @@
-
+﻿
 ============================================
 Getting Started
 ============================================
 
 Installation
 ============
-Install Medidata.RWS.NET via NuGet: 
-``nuget install Medidata.RWS.NET``
+Install Medidata.RWS.NET.Standard via NuGet: 
+``nuget install Medidata.RWS.NET.Standard``
 
 or, via the Package Manager Console: 
-``Install-Package Medidata.RWS.NET``
+``Install-Package Medidata.RWS.NET.Standard``
 
 Basic Example
 ===============
-At the most basic level, communicating with Medidata RAVE using Medidata.RWS.NET involves:
+At the most basic level, communicating with Medidata RAVE using Medidata.RWS.NET.Standard involves:
 
 1. Creating a connection.
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 	var connection = new RwsConnection("innovate", "RAVE username", "RAVE password");
 
 The above code will create a RwsConnection object to the "innovate" RAVE instance (subdomain) - https://innovate.mdsol.com. You'd substitute your RAVE instance subdomain here.
@@ -29,7 +29,7 @@ The RAVE username and RAVE password parameters should reference a dedicated RAVE
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests.Datasets;
+	using Medidata.RWS.NET.Standard.Core.Requests.Datasets;
 	var datasetRequest = new SubjectDatasetRequest("MediFlex", "PROD", subject_key: "SUBJECT001", formOid: "HEM");
 
 3. Sending the request.
@@ -48,8 +48,8 @@ The RAVE username and RAVE password parameters should reference a dedicated RAVE
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests.Datasets;
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests.Datasets;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate", "RAVE username", "RAVE password");
@@ -67,7 +67,7 @@ The above steps outline how to retrieve data for **SUBJECT001**'s **HEM** form i
 
 Miscellaneous Configuration
 ===========================
-When working with Medidata.RWS.NET, you may wish to configure the connection to RWS beyond the default settings. Options for doing so are described below.
+When working with Medidata.RWS.NET.Standard, you may wish to configure the connection to RWS beyond the default settings. Options for doing so are described below.
 
 -----------------
 Virtual Directory
@@ -77,7 +77,7 @@ The sub-domain & virtual directory are configurable. The default virtual directo
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate", "RAVE username", "RAVE password");
@@ -87,7 +87,7 @@ If instead you'd like to change the virtual directory to a custom one, you can p
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate", "RAVE username", "RAVE password", "CustomVirtualDirectory");
@@ -102,7 +102,7 @@ If supplied, the timeout of the request in milliseconds. If the request takes lo
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate", "RAVE username", timeout: 1000)
