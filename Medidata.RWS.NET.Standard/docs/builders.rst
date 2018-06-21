@@ -5,7 +5,7 @@ Using Builders
 When communicating with Medidata RAVE Web Services, your data payloads will take the form of ODM XML - or `Operational Data Model <http://www.cdisc.org/odm/>`_ XML documents.
 
 It's important to understand that RWS expects the XML data you send to conform to the ODM format - malformed or otherwise improperly formatted XML
-won't be processed. Since creating these data structures manually can be time consuming and tedious, Medidata.RWS.NET provides several "Builder" classes
+won't be processed. Since creating these data structures manually can be time consuming and tedious, Medidata.RWS.NET.Standard provides several "Builder" classes
 to help.
 
 Basic Example - Register a Subject

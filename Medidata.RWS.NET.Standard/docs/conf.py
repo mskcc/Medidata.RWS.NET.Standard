@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Medidata.RWS.NET documentation build configuration file, created by
+# Medidata.RWS.NET.Standard documentation build configuration file, created by
 # sphinx-quickstart on Tue May  9 08:59:15 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Medidata.RWS.NET'
+project = 'Medidata.RWS.NET.Standard'
 copyright = '2017, Matthew Koch, MSKCC'
 author = 'Matthew Koch, MSKCC'
 
@@ -129,7 +129,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'MedidataRWSNET.tex', 'Medidata.RWS.NET Documentation',
+    (master_doc, 'MedidataRWSNET.tex', 'Medidata.RWS.NET.Standard Documentation',
      'Matthew Koch, MSKCC', 'manual'),
 ]
 
@@ -139,7 +139,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'medidatarwsnet', 'Medidata.RWS.NET Documentation',
+    (master_doc, 'medidatarwsnet', 'Medidata.RWS.NET.Standard Documentation',
      [author], 1)
 ]
 
@@ -150,7 +150,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'MedidataRWSNET', 'Medidata.RWS.NET Documentation',
+    (master_doc, 'MedidataRWSNET', 'Medidata.RWS.NET.Standard Documentation',
      author, 'MedidataRWSNET', 'One line description of project.',
      'Miscellaneous'),
 ]

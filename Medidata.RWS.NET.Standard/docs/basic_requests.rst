@@ -1,9 +1,8 @@
-
 ============================================
 Basic Requests
 ============================================
 
-Medidata.RWS.NET provides some basic diagnostic / health check API requests out of the box.
+Medidata.RWS.NET.Standard provides some basic diagnostic / health check API requests out of the box.
 
 VersionRequest()
 ================
@@ -11,7 +10,7 @@ Returns the RWS version number. Specifically, this is the textual response retur
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate"); // no authentication required
@@ -48,7 +47,7 @@ Specifically, this is the html response returned when calling ``https://{ subdom
 
 .. code-block:: c#
 
-	using Medidata.RWS.Core.Requests;
+	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate"); // no authentication required
@@ -59,6 +58,7 @@ Specifically, this is the html response returned when calling ``https://{ subdom
 	//Write the response text to the console
 	Console.Write(response.ResponseText);
 	//<!DOCTYPE html>\r\n<html>\r\n<head><script..........
+
 
 CacheFlushRequest()
 ===================
