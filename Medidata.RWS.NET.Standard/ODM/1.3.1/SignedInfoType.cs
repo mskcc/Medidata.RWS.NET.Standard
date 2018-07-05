@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Medidata.RWS.NET.Standard.ODM
 {
@@ -19,7 +20,8 @@ namespace Medidata.RWS.NET.Standard.ODM
         
         private string _id;
         #endregion
-        
+
+        [XmlIgnore]
         public CanonicalizationMethodType CanonicalizationMethod
         {
             get
