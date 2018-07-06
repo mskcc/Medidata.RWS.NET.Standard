@@ -68,8 +68,13 @@ Using this ODM conformant XML, you could now POST it to RAVE by wrapping it in a
 
 .. code-block:: c#
 
-	RwsConnection conn = new RwsConnection("innovate", "username", "password");
-	var registrationRequest = new PostDataRequest(registrationXml);
-	var response = conn.SendRequest(registrationRequest) as RWSPostResponse;
 
-	//If successful, SUBJECT001 should be registered in SITE01 for the Mediflex study.
+    //Create a connection
+    var connection = new RwsConnection("innovate", "username", "password");
+
+    //Send the request / get a response
+    var response = await connection.SendRequestAsync(new PostDataRequest(registrationXml)) as RwsPostResponse;
+
+    Console.Write(response.SubjectNumberInStudy); // 12345
+
+    //If successful, SUBJECT001 should be registered in SITE01 for the Mediflex study.

@@ -37,20 +37,17 @@ The RAVE username and RAVE password parameters should reference a dedicated RAVE
 
 .. code-block:: c#
 
-	var response = connection.SendRequest(datasetRequest) as RWSResponse;
-
+	var response = await connection.SendRequestAsync(datasetRequest) as RwsResponse;
+    
 4. Dealing with the response/exception.
 
 .. code-block:: c#
 
-	Console.Write(response.RawXMLString());
+    Console.Write(await response.ResponseObject.Content.ReadAsStringAsync());
 
 5. Putting this all together, we have the following.
 
 .. code-block:: c#
-
-	using Medidata.RWS.NET.Standard.Core.Requests.Datasets;
-	using Medidata.RWS.NET.Standard.Core.Requests;
 
 	//Create a connection
 	var connection = new RwsConnection("innovate", "RAVE username", "RAVE password");
@@ -59,10 +56,10 @@ The RAVE username and RAVE password parameters should reference a dedicated RAVE
 	var datasetRequest = new SubjectDatasetRequest("MediFlex", "PROD", subject_key: "SUBJECT001", formOid: "HEM");
 
 	//Send the request / get a response
-	var response = connection.SendRequest(datasetRequest) as RWSResponse;
+    var response = await connection.SendRequestAsync(datasetRequest) as RwsResponse;
 
 	//Write the response XML string to the console
-	Console.Write(response.RawXMLString());
+    Console.Write(await response.ResponseObject.Content.ReadAsStringAsync());
 
 The above steps outline how to retrieve data for **SUBJECT001**'s **HEM** form in the **MediFlex** study (specifically, the **PROD** environment).
 

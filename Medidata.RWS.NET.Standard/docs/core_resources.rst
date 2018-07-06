@@ -22,8 +22,8 @@ Returns a list of EDC studies (as a ``RWSStudies`` object). Excludes studies tha
 	//Create a connection
 	var connection = new RwsConnection("innovate", "username", "password"); // authentication required
 
-	//Send the request / get a response
-	var response = connection.SendRequest(new ClinicalStudiesRequest()) as RWSStudies;
+    //Send the request / get a response
+    var response = await connection.SendRequestAsync(new ClinicalStudiesRequest()) as RwsStudies;
 
 	//Write the study list to the console
 	foreach (var s in response)
@@ -78,8 +78,8 @@ Parameters
 	//Create a connection
 	var connection = new RwsConnection("innovate", "username", "password"); // authentication required
 
-	//Send the request / get a response
-	var response = connection.SendRequest(new StudySubjectsRequest("Mediflex", "Prod")) as RWSSubjects;
+    //Send the request / get a response
+    var response = await connection.SendRequestAsync(new StudySubjectsRequest("Mediflex", "Prod")) as RwsSubjects;
 
 	//Write each subject key to the console
 	foreach (var s in response)
@@ -113,17 +113,16 @@ or, to filter the data by form:
 
 .. code-block:: c#
 
-	using Medidata.RWS.NET.Standard.Core.Requests
-	using Medidata.RWS.NET.Standard.Core.Requests.Datasets;
-
 	//Create a connection
 	var connection = new RwsConnection("innovate", "username", "password"); // authentication required
+    
 
-	//Send the request / get a response
-	var response = connection.SendRequest(new StudyDatasetRequest("Mediflex", "Prod", dataset_type: "regular")) as RWSResponse;
+    //Send the request / get a response
+    var response = await connection.SendRequestAsync(new StudyDatasetRequest("Mediflex", "Prod", dataset_type: "regular")) as RwsResponse;
+
 
 	//Write the XML response to the console (see XML below)
-	Console.Write(response.RawXMLString());
+    Console.Write(await response.ResponseObject.Content.ReadAsStringAsync());
 
 
 .. code-block:: xml
@@ -191,13 +190,16 @@ or, to filter the data by form:
     //Create a connection
     var connection = new RwsConnection("innovate", "username", "password"); // authentication required
 
+
     //Send the request / get a response
-    var response = connection.SendRequest(new SubjectDatasetRequest("Mediflex", "Prod", subject_key: "1", dataset_type: "regular")) as RWSResponse;
+    var response = await connection.SendRequestAsync(new SubjectDatasetRequest("Mediflex", "Prod", subject_key: "1", dataset_type: "regular")) as RwsResponse;
+
 
     //Write the XML response to the console (see XML below)
-    Console.Write(response.RawXMLString());
+    Console.Write(await response.ResponseObject.Content.ReadAsStringAsync());
 
 
+   
 .. code-block:: xml
 
     <?xml version="1.0" encoding="utf-8"?>
@@ -267,11 +269,14 @@ or, to filter the data by form:
     //Create a connection
     var connection = new RwsConnection("innovate", "username", "password"); // authentication required
 
+
     //Send the request / get a response
-    var response = connection.SendRequest(new VersionDatasetRequest(project_name: "Mediflex", environment_name: "Dev", version_oid: "999")) as RWSResponse;
+    var response = await connection.SendRequestAsync(new VersionDatasetRequest(project_name: "Mediflex", environment_name: "Dev", version_oid: "999")) as RwsResponse;
+
 
     //Write the XML response to the console (see XML below)
-    Console.Write(response.RawXMLString());
+    Console.Write(await response.ResponseObject.Content.ReadAsStringAsync());
+
 
 *Note the **MetaDataVersionOID** value in the XML response.*
 
