@@ -16,6 +16,7 @@
     <PackageVersion>1.0.0</PackageVersion>
     <Owners>Matthew Koch, MSKCC</Owners>
     <Copyright>Copyright 2018 Matthew Koch and Memorial Sloan Kettering Cancer Center</Copyright>
+    <ReleaseVersion>1.0.1</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
