@@ -7,7 +7,7 @@
 Medidata.RWS.NET.Standard Documentation
 ============================================
 
-Medidata.RWS.NET.Standard is a comprehensive, fluent .NET API library for `Medidata RAVE Web Services (RWS) <https://learn.mdsol.com/api/rws/getting-started-with-rave-web-services-95587258.html>`_. It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.
+Medidata.RWS.NET.Standard is a comprehensive, fluent .NET Standard 2.0 API library for `Medidata RAVE Web Services (RWS) <https://learn.mdsol.com/api/rws/getting-started-with-rave-web-services-95587258.html>`_. It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.
 
 
 .. toctree::

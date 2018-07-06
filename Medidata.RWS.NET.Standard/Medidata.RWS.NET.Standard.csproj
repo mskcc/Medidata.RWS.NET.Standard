@@ -16,6 +16,7 @@
     <PackageVersion>1.0.0</PackageVersion>
     <Owners>Matthew Koch, MSKCC</Owners>
     <Copyright>Copyright 2018 Matthew Koch and Memorial Sloan Kettering Cancer Center</Copyright>
+    <ReleaseVersion>1.0.1</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +24,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
 
   <ItemGroup>
