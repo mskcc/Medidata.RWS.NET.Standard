@@ -5,7 +5,7 @@
 Documentation can be found at https://medidatarwsnetstandard.readthedocs.io/en/latest/
 
 ## Installation
-Install the library via Nuget: https://www.nuget.org/packages/RWS.NET/ and then use in your own .NET project.
+Install the library via Nuget: https://www.nuget.org/packages/Medidata.RWS.NET.Standard/ and then use in your own .NET project.
 
 ## License
 This project is open-sourced software licensed under the MIT license.
