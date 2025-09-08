@@ -8,19 +8,20 @@
     <LangVersion>latest</LangVersion>
     <Authors>Matthew Koch, MSKCC</Authors>
     <Company>Memorial Sloan Kettering Cancer Center</Company>
-    <PackageTags>rave, rws, medidata</PackageTags>
+    <PackageTags>medidata;rws;clinical;edc;api;httpclient;dotnet8;dotnet9</PackageTags>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/mskcc/Medidata.RWS.NET.Standard/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/mskcc/Medidata.RWS.NET.Standard/</PackageProjectUrl>
-    <Summary>Medidata.RWS.NET.Standard is a comprehensive, fluent .NET API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.</Summary>
-    <Title>Medidata.RWS.NET.Standard </Title>
-    <Description>Medidata.RWS.NET.Standard is a comprehensive, fluent .NET API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.</Description>
-    <PackageId>Medidata.RWS.NET.Standard</PackageId>
-    <PackageVersion>1.0.2</PackageVersion>
+    <Summary>Modern .NET 8.0/9.0 API library for Medidata RAVE Web Services (RWS) with enhanced null safety and async patterns.</Summary>
+    <Title>Medidata RWS .NET Client</Title>
+    <Description>Comprehensive .NET 8.0/9.0 API library for Medidata RAVE Web Services (RWS). Features modern async patterns, nullable reference types, Flurl.Http 4.x, and enhanced performance for clinical data applications.</Description>
+    <PackageId>Medidata.RWS.NET</PackageId>
+    <Version>2.0.0</Version>
+    <PackageVersion>2.0.0</PackageVersion>
     <Owners>Matthew Koch, MSKCC</Owners>
-    <Copyright>Copyright 2018 Matthew Koch and Memorial Sloan Kettering Cancer Center</Copyright>
-    <ReleaseVersion>1.0.2</ReleaseVersion>
+    <Copyright>Copyright 2018-2025 Matthew Koch and Memorial Sloan Kettering Cancer Center</Copyright>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
