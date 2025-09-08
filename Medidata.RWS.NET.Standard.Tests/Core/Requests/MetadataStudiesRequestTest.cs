@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http.Testing;
 using Medidata.RWS.NET.Standard.Core;
@@ -42,7 +40,7 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
         public async Task MetadataStudiesRequest_can_format_a_response()
         {
             _httpTest.RespondWith(
-                    new StringContent(@"<?xml version=""1.0"" encoding=""utf-8""?>
+                    @"<?xml version=""1.0"" encoding=""utf-8""?>
                 <ODM ODMVersion=""1.3"" Granularity=""Metadata"" FileType=""Snapshot"" FileOID=""d5457ec2-feee-4a0f-88c1-fbedc391974b"" CreationDateTime=""2018-06-20T12:02:50"" xmlns=""http://www.cdisc.org/ns/odm/v1.3"" xmlns:mdsol=""http://www.mdsol.com/ns/odm/metadata"">
                     <Study OID=""Lab Test(Dev)"">
                         <GlobalVariables>
@@ -58,7 +56,7 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
                             <ProtocolName>Mediflex</ProtocolName>
                         </GlobalVariables>
                     </Study>
-                </ODM>", Encoding.UTF8, "text/xml"));
+                </ODM>", 200, headers: new { content_type = "text/xml" });
 
             var rwsConnection = new RwsConnection("innovate", "test", "password");
             var request = new MetadataStudiesRequest();

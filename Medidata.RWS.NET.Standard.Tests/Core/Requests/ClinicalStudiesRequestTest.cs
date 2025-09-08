@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http.Testing;
 using Medidata.RWS.NET.Standard.Core;
@@ -45,7 +43,7 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
         {
 
             _httpTest.RespondWith(
-                new StringContent(@"<ODM FileType=""Snapshot"" FileOID="" CreationDateTime="" ODMVersion=""1.3""
+                @"<ODM FileType=""Snapshot"" FileOID="" CreationDateTime="" ODMVersion=""1.3""
                     xmlns:mdsol=""http://www.mdsol.com/ns/odm/metadata"" xmlns=""http://www.cdisc.org/ns/odm/v1.3"">
                      <Study OID=""Lab Test"">
                        <GlobalVariables>
@@ -61,7 +59,7 @@ namespace Medidata.RWS.NET.Standard.Tests.Core.Requests
                           <ProtocolName>Mediflex</ProtocolName>
                        </GlobalVariables>
                      </Study>
-                    </ODM>", Encoding.UTF8, "text/xml"));
+                    </ODM>", 200, headers: new { content_type = "text/xml" });
 
             var rwsConnection = new RwsConnection("innovate", "test", "password");
             var request = new ClinicalStudiesRequest();

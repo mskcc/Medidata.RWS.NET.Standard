@@ -69,7 +69,8 @@ namespace Medidata.RWS.NET.Standard.Core
 
             HttpResponseMessage response = null;
             try {
-                response = await client.AllowAnyHttpStatus().SendAsync(request.Method, request.RequestBody);
+                var flurlResponse = await client.AllowAnyHttpStatus().SendAsync(request.Method, request.RequestBody);
+                response = flurlResponse.ResponseMessage;
             } catch (FlurlHttpTimeoutException ex)
             {
                 throw new RwsException($"Connection timeout for {client.Url.ToString()}", ex);
