@@ -1,15 +1,19 @@
 ## Overview
-**Medidata.RWS.NET.Standard** is a comprehensive, fluent .NET Standard 2.0 API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.
+**Medidata.RWS.NET.Standard** is a comprehensive, fluent .NET API library for Medidata RAVE Web Services (RWS). Modernized for .NET 8.0 and .NET 9.0, it handles boilerplate HTTP communication code, enabling faster integration with RWS APIs through a clean, async-first design.
 
 ## Documentation
 Documentation can be found at https://medidatarwsnetstandard.readthedocs.io/en/latest/
 
 ## Installation
-Install the library via Nuget: https://www.nuget.org/packages/Medidata.RWS.NET.Standard/ and then use in your own .NET project.
+Install the library via NuGet: https://www.nuget.org/packages/Medidata.RWS.NET.Standard/ and then use in your own .NET project.
+
+**Supported Frameworks:**
+- .NET 8.0 (LTS)
+- .NET 9.0 (Latest)
 
 ## License
 This project is open-sourced software licensed under the MIT license.
 
 ## Acknowledgements
-The [Flurl library](https://github.com/tmenier/Flurl) ([license](https://github.com/tmenier/Flurl/blob/master/LICENSE)) is used for Url building and communication over HTTP.
+The [Flurl.Http library](https://github.com/tmenier/Flurl) ([license](https://github.com/tmenier/Flurl/blob/master/LICENSE)) is used for HTTP communication.
 [Moq](https://github.com/moq/moq4) ([license](https://github.com/moq/moq4/blob/master/License.txt)) is utilized for testing.

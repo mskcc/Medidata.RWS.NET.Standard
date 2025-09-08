@@ -17,8 +17,8 @@
     <Title>Medidata RWS .NET Client</Title>
     <Description>Comprehensive .NET 8.0/9.0 API library for Medidata RAVE Web Services (RWS). Features modern async patterns, nullable reference types, Flurl.Http 4.x, and enhanced performance for clinical data applications.</Description>
     <PackageId>Medidata.RWS.NET.Standard</PackageId>
-    <Version>2.0.1</Version>
-    <PackageVersion>2.0.1</PackageVersion>
+    <Version>2.0.2</Version>
+    <PackageVersion>2.0.2</PackageVersion>
     <Owners>Matthew Koch, MSKCC</Owners>
     <Copyright>Copyright 2018-2025 Matthew Koch and Memorial Sloan Kettering Cancer Center</Copyright>
     <ReleaseVersion>2.0.0</ReleaseVersion>
