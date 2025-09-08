@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <LangVersion>latest</LangVersion>
     <Authors>Matthew Koch, MSKCC</Authors>
     <Company>Memorial Sloan Kettering Cancer Center</Company>
     <PackageTags>rave, rws, medidata</PackageTags>
@@ -9,9 +13,9 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/mskcc/Medidata.RWS.NET.Standard/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/mskcc/Medidata.RWS.NET.Standard/</PackageProjectUrl>
-    <Summary>Medidata.RWS.NET.Standard is a comprehensive, fluent .NET Standard 2.0 API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster. Compatible with your .NET Core / Xamarin apps!</Summary>
+    <Summary>Medidata.RWS.NET.Standard is a comprehensive, fluent .NET API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.</Summary>
     <Title>Medidata.RWS.NET.Standard </Title>
-    <Description>Medidata.RWS.NET.Standard is a comprehensive, fluent .NET Standard 2.0 API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster. Compatible with your .NET Core / Xamarin apps!</Description>
+    <Description>Medidata.RWS.NET.Standard is a comprehensive, fluent .NET API library for Medidata RAVE Web Services (RWS). It handles a large portion of the boilerplate C# code you'd normally have to write in order to communicate with RWS, allowing you to get up and running faster.</Description>
     <PackageId>Medidata.RWS.NET.Standard</PackageId>
     <PackageVersion>1.0.2</PackageVersion>
     <Owners>Matthew Koch, MSKCC</Owners>
@@ -20,10 +24,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flurl.Http" Version="2.3.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Flurl.Http" Version="4.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>

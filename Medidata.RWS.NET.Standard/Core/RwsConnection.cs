@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +32,6 @@ namespace Medidata.RWS.NET.Standard.Core
                 subDomain.ToLower().StartsWith("http") ? subDomain : $"https://{subDomain}.mdsol.com",
                 virtualDir
             );
-                   
-            ServicePointManager.SecurityProtocol = ServicePointManager.SecurityProtocol | SecurityProtocolType.Tls12;
 
         }
 
